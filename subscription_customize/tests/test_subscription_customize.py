@@ -10,7 +10,7 @@ class TestSubscriptionCustom(TransactionCase):
             {
                 "partner_id": self.env.ref("base.partner_demo_portal").id,
                 "plan_id": self.env.ref("sale_subscription.subscription_plan_month").id,
-                "recurring_invoice_line_ids": [
+                "order_line": [
                     (
                         0,
                         False,
@@ -21,8 +21,10 @@ class TestSubscriptionCustom(TransactionCase):
                             "name": self.env.ref(
                                 "sale_subscription.product_office_cleaning"
                             ).name,
-                            "quantity": 2,
-                            "uom_id": self.env.ref("uom.product_uom_categ_unit").id,
+                            "product_uom_qty": 2,
+                            "product_uom": self.env.ref(
+                                "uom.product_uom_categ_unit"
+                            ).id,
                             "price_unit": 55,
                         },
                     )
@@ -38,7 +40,7 @@ class TestSubscriptionCustom(TransactionCase):
                 "partner_id": self.env.ref("base.partner_demo_portal").id,
                 "parent_id": self.parent_subscription.id,
                 "plan_id": self.env.ref("sale_subscription.subscription_plan_month").id,
-                "recurring_invoice_line_ids": [
+                "order_line": [
                     (
                         0,
                         False,
@@ -49,8 +51,10 @@ class TestSubscriptionCustom(TransactionCase):
                             "name": self.env.ref(
                                 "sale_subscription.product_office_cleaning"
                             ).name,
-                            "quantity": 2,
-                            "uom_id": self.env.ref("uom.product_uom_categ_unit").id,
+                            "product_uom_qty": 2,
+                            "product_uom": self.env.ref(
+                                "uom.product_uom_categ_unit"
+                            ).id,
                             "price_unit": 33,
                         },
                     )
