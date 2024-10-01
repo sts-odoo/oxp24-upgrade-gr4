@@ -6,7 +6,7 @@ from odoo.addons.base.tests.common import TransactionCase
 class TestSubscriptionCustom(TransactionCase):
 
     def test_subscription_custom(self):
-        self.parent_subscription = self.env['sale.subscription'].create({
+        self.parent_subscription = self.env['sale.order'].create({
             'partner_id': self.env.ref('base.partner_demo_portal').id,
             'template_id': self.env.ref('sale_subscription.monthly_subscription').id,
             'recurring_invoice_line_ids': [(0, False, {
@@ -21,7 +21,7 @@ class TestSubscriptionCustom(TransactionCase):
         self.assertEqual(self.parent_subscription.child_recurring_total, 0.00)
         self.assertEqual(self.parent_subscription.amount_at_start, 0.00)
 
-        self.child_subscription = self.env['sale.subscription'].create({
+        self.child_subscription = self.env['sale.order'].create({
             'partner_id': self.env.ref('base.partner_demo_portal').id,
             'parent_id': self.parent_subscription.id,
             'template_id': self.env.ref('sale_subscription.monthly_subscription').id,
